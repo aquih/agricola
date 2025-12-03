@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="agricola_hr_timesheet_line_tree" model="ir.ui.view">
+            <field name="name">agricola.account.analytic.line.list.hr_timesheet</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//list/field[@name='employee_id']" position="after">
+                    <field name="user_id"/>
+                </xpath>
+                <xpath expr="//list/field[@name='task_id']" position="after">
+                    <field name="area_id"/>
+                    <field name="subarea_id" required="1"/>
+                    <field name="finca_id"/>
+                </xpath>
+                <xpath expr="//list/field[@name='unit_amount']" position="before">
+                    <field name="hora_entrada" required="1" widget="float_time"/>
+                </xpath>
+                <xpath expr="//list/field[@name='unit_amount']" position="after">
+                    <field name="produccion"/>
+                    <field name="udm_produccion"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

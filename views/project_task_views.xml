@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="agricola_view_task_form2_inherited">
+            <field name="name">agricola.project.task.form.inherited</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
+            <field name="arch" type="xml">
+                <field name="timesheet_ids" position="before">
+                    <group>
+                        <group>
+                            <field name="valor_a_pagar"/>
+                            <field name="codigo"/>
+                        </group>
+                        <group>
+                            <field name="udm_valor_a_pagar_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+                </field>
+                <xpath expr="//page[@name='page_timesheets']//field[@name='timesheet_ids']//list/field[@name='employee_id']" position="after">
+                    <field name="user_id"/>
+                </xpath>
+                <xpath expr="//page[@name='page_timesheets']//field[@name='timesheet_ids']//list/field[@name='project_id']" position="after">
+                    <field name="area_id"/>
+                    <field name="subarea_id" required="1"/>
+                    <field name="finca_id"/>
+                </xpath>
+                <xpath expr="//page[@name='page_timesheets']//field[@name='timesheet_ids']//list/field[@name='unit_amount']" position="before">
+                    <field name="hora_entrada" required="1" widget="float_time"/>
+                </xpath>
+                <xpath expr="//page[@name='page_timesheets']//field[@name='timesheet_ids']//list/field[@name='unit_amount']" position="after">
+                    <field name="produccion"/>
+                    <field name="udm_produccion"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
