@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-import zeep
-import logging
 
 class Fincas(models.Model):
     _name = 'agricola.catalogos.fincas'
@@ -24,12 +22,12 @@ class Subareas(models.Model):
     _name = 'agricola.catalogos.subareas'
 
     name = fields.Char("Nombre")
+    display_name = fields.Char(compute="_compute_display_name")
     descripcion = fields.Char("Descripcion")
     area_id = fields.Many2one("agricola.catalogos.areas", string='Area', ondelete='restrict')
 
-    @api.multi
-    def name_get(self):
-        res = []
+    @api.depends("name", "area_id.name", "area_id.finca_id.name")
+    def _compute_display_name(self):
         for subarea in self:
             name = []
             if subarea.area_id:
@@ -37,8 +35,7 @@ class Subareas(models.Model):
                     name.append(subarea.area_id.finca_id.name or "")
                 name.append(subarea.area_id.name or "")
             name.append(subarea.name or "")
-            res.append((subarea.id, " - ".join(name)))
-        return res
+            subarea.display_name = " - ".join(name)
 
 class DuracionTarea(models.Model):
     _name = 'agricola.catalogos.duracion_tarea'

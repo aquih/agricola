@@ -3,7 +3,7 @@
     <data>
 
         <record id="agricola_view_employee_tree" model="ir.ui.view">
-            <field name="name">agricola.hr.employee.tree</field>
+            <field name="name">agricola.hr.employee.list</field>
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_tree"/>
             <field name="arch" type="xml">
