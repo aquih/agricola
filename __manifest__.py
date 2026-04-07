@@ -12,9 +12,9 @@
     'website': "http://www.aquih.com",
 
     'category': 'Uncategorized',
-    'version': '0.2',
+    'version': '0.3',
 
-    'depends': ['base', 'rrhh', 'hr_timesheet', 'hr_payroll'],
+    'depends': ['base', 'rrhh', 'hr_timesheet', 'hr_payroll', 'hr_work_entry'],
 
     'data': [
         'views/agricola_views.xml',
@@ -22,6 +22,7 @@
         'views/hr_payslip_run_views.xml',
         'views/hr_payslip_views.xml',
         'views/hr_timesheet_views.xml',
+        'views/hr_work_entry_views.xml',
         'views/project_task_views.xml',
         'security/ir.model.access.csv',
     ],
